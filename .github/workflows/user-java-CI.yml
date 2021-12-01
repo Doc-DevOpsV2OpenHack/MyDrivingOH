@@ -29,17 +29,14 @@ jobs:
       - name: Build with Maven
         run: mvn -B package --file pom.xml
 
-      - uses: actions/github-script@v5
+      - uses: nashmaniac/create-issue-action@v1.1
         if: failure()
+        name: Create Issue Action
         with:
-          script: |
-            let body = "${{ env.build_name }} Workflow Failure \n ";
-            body += "Build Number: ${{ github.run_number }} \n";
-            body += "Build Log: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }} \n";
-            body += "SHA: [${{ github.sha }}](https://github.com/${{ github.repository }}/commit/${{ github.sha }}) \n";
-            await github.rest.issues.create({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            title: "${{ env.build_name }} Workflow ${{ github.run_number }} Failed! ",
-            body: body
-            });
+          title: Build Failed
+          token: ${{secrets.GITHUB_TOKEN}}
+          assignees: ${{github.actor}}
+          labels: worflow-failed
+          body: |
+            ${{ github.workflow }} Workflow failed for commit ${{github.sha}}
+            Build Log: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
