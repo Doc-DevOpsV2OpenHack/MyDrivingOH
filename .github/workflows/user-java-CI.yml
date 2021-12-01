@@ -29,11 +29,11 @@ jobs:
       - name: Build with Maven
         run: mvn -B package --file pom.xml
 
-      - uses: actions/github-script@v4
+      - uses: actions/github-script@v5
         if: failure()
         with:
           script: |
-            let body = "${{ env.build_name }} Worflow Failure \n ";
+            let body = "${{ env.build_name }} Workflow Failure \n ";
             body += "Build Number: ${{ github.run_number }} \n";
             body += "Build Log: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }} \n";
             body += "SHA: [${{ github.sha }}](https://github.com/${{ github.repository }}/commit/${{ github.sha }}) \n";
