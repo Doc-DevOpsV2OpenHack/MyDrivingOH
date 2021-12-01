@@ -12,9 +12,6 @@ on:
       - apis/trips/**
       - .github/workflows/trips-CI.yml
 
-defaults: # this will likely need to be hinted as the 'cd' command may not work well with go
-  run:
-    working-directory: apis/trips
 
 
 jobs:
@@ -31,7 +28,9 @@ jobs:
         run: go build -v .
         
       - name: where am I
-        run: ls
+        run: |
+          cd apis/trips
+          ls
 
       - name: Test
         run: go test ./tripgo -run Unit
