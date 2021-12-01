@@ -37,7 +37,7 @@ jobs:
             body += "Build Number: ${{ github.run_number }} \n";
             body += "Build Log: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }} \n";
             body += "SHA: [${{ github.sha }}](https://github.com/${{ github.repository }}/commit/${{ github.sha }}) \n";
-            await github.issues.create({
+            await github.rest.issues.create({
             owner: context.repo.owner,
             repo: context.repo.repo,
             title: "${{ env.build_name }} Workflow ${{ github.run_number }} Failed! ",
