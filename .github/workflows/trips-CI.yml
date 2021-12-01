@@ -29,10 +29,5 @@ jobs:
       - name: Build
         run: go build -v .
         
-      - name: where am I
-        run: |
-          ls
-          pwd
-
       - name: Test
-        run: go test ./tripgo -run Unit
+        run: go test ./tripsgo -run Unit # as of this writing the readme incorrectly specifies the tripgo [no s] directory
