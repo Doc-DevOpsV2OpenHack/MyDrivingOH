@@ -6,7 +6,6 @@ on:
       - apis/trips/**
       - .github/workflows/trips-CD.yml
 
-  # Variables used in the jobs
 env:
   registry: openhackdct2jkx0acr.azurecr.io
   repository: devopsoh/api-trips
@@ -39,6 +38,7 @@ jobs:
           body: |
             ${{ github.workflow }} Workflow failed for commit ${{github.sha}}
             Build Log: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
   simple_deploy:
     runs-on: ubuntu-latest
     needs: docker_build_and_push

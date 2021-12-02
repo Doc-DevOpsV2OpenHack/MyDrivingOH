@@ -6,7 +6,6 @@ on:
       - apis/poi/**
       - .github/workflows/POI-CD.yml
 
-  # Variables used in the jobs
 env:
   registry: openhackdct2jkx0acr.azurecr.io
   repository: devopsoh/api-poi
