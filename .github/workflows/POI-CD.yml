@@ -12,8 +12,8 @@ env:
   docker_path: apis/poi/web
   webapp_name: openhackdct2jkx0poi
   resource_group: openhackdct2jkx0rg
-  staging_url_healthcheck: http://openhackdct2jkx0poi-staging.azurewebsites.net/healthcheck
-  production_url_healthcheck: http://openhackdct2jkx0poi.azurewebsites.net/healthcheck
+  staging_url_healthcheck: https://openhackdct2jkx0poi-staging.azurewebsites.net/api/healthcheck/poi
+  production_url_healthcheck: https://openhackdct2jkx0poi.azurewebsites.net/api/healthcheck/poi
 
 jobs:
   docker_build_and_push:
