@@ -7,13 +7,13 @@ on:
       - .github/workflows/POI-CD.yml
 
 env:
-  registry: openhackdct2jkx0acr.azurecr.io
+  registry: openhackf603h60acr.azurecr.io
   repository: devopsoh/api-poi
   docker_path: apis/poi/web
   webapp_name: openhackdct2jkx0poi
-  resource_group: openhackdct2jkx0rg
-  staging_url_healthcheck: https://openhackdct2jkx0poi-staging.azurewebsites.net/api/healthcheck/poi
-  production_url_healthcheck: https://openhackdct2jkx0poi.azurewebsites.net/api/healthcheck/poi
+  resource_group: openhackf603h606rg
+  staging_url_healthcheck: https://openhackf603h60poi-staging.azurewebsites.net/api/healthcheck/poi
+  production_url_healthcheck: https://openhackf603h60poi.azurewebsites.net/api/healthcheck/poi
 
 jobs:
   docker_build_and_push:
