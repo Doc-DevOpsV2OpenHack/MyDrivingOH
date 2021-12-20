@@ -3,26 +3,21 @@ name: Allow some traffic into a desired slot
 on:
   workflow_call:
     inputs:
-      slot_name:
+      slot_name: # The name of the slot to deploy to - e.g. staging
         required: true
         type: string
-        description: The name of the slot to deploy to - e.g. staging
-      webapp_name:
+      webapp_name: # The name of the Azure Web App to deploy to
         required: true
         type: string
-        description: The name of the Azure Web App to deploy to
-      webapp_resource_group:
+      webapp_resource_group: # The name of the Azure Web App resource group
         required: true
         type: string
-        description: The name of the Azure Web App resource group
-      percentage:
+      percentage: #  The percentage of traffic to allow into staging (0-100)
         required: true
         type: number
-        description: The percentage of traffic to allow into staging (0-100)
-      production_url_healthcheck:
+      production_url_healthcheck: #  The production URL to validate
         required: true
         type: string
-        description: The production URL to validate
     secrets:
       AZURE_CREDENTIALS:
         required: true
