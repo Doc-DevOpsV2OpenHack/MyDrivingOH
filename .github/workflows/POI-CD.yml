@@ -84,7 +84,7 @@ jobs:
 
   canary-deploy-1:
     needs: validate_staging
-    uses: Doc-DevOpsV2OpenHack/MyDrivingOH/.github/workflows/POI-CD.yml@ch8
+    uses: Doc-DevOpsV2OpenHack/MyDrivingOH/.github/workflows/canary-deploy.yml@ch8
     with:
       slot_name: staging
       webapp_name: ${{ env.webapp_name }}
@@ -96,7 +96,7 @@ jobs:
 
   canary-deploy-2:
     needs: canary-deploy-1
-    uses: Doc-DevOpsV2OpenHack/MyDrivingOH/.github/workflows/POI-CD.yml@ch8
+    uses: Doc-DevOpsV2OpenHack/MyDrivingOH/.github/workflows/canary-deploy.yml@ch8
     with:
       slot_name: staging
       webapp_name: ${{ env.webapp_name }}
