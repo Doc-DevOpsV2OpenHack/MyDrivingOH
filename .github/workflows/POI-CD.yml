@@ -86,11 +86,11 @@ jobs:
     needs: validate_staging
     uses: Doc-DevOpsV2OpenHack/MyDrivingOH/.github/workflows/canary-deploy.yml@ch8
     with:
-      slot_name: staging
-      webapp_name: ${{env.webapp_name}}
-      webapp_resource_group: ${{env.resource_group}}
       percentage: 20
-      production_url_healthcheck: ${{env.production_url_healthcheck}}
+      slot_name: staging
+      webapp_name: openhackdct2jkx0poi
+      webapp_resource_group: openhackdct2jkx0rg
+      production_url_healthcheck: https://openhackf603h60poi.azurewebsites.net/api/healthcheck/poi
     secrets:
       AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
 
@@ -98,11 +98,11 @@ jobs:
     needs: canary-deploy-1
     uses: Doc-DevOpsV2OpenHack/MyDrivingOH/.github/workflows/canary-deploy.yml@ch8
     with:
-      slot_name: staging
-      webapp_name: ${{env.webapp_name}}
-      webapp_resource_group: ${{env.resource_group}}
       percentage: 50
-      production_url_healthcheck: ${{env.production_url_healthcheck}}
+      slot_name: staging
+      webapp_name: openhackdct2jkx0poi
+      webapp_resource_group: openhackdct2jkx0rg
+      production_url_healthcheck: https://openhackf603h60poi.azurewebsites.net/api/healthcheck/poi
     secrets:
       AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
       
