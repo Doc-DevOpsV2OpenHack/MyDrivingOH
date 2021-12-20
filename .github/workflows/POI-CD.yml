@@ -5,7 +5,7 @@ on:
     paths:
       - apis/poi/**
       - .github/workflows/POI-CD.yml
-
+      - .github/workflows/canary-deploy.yml
 
 env:
   registry: openhackf603h606acr.azurecr.io
