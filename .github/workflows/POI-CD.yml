@@ -91,7 +91,7 @@ jobs:
       slot_name: staging
       webapp_name: openhackf603h606poi
       webapp_resource_group: openhackf603h606rg
-      production_url_healthcheck: https://openhackf603h60poi.azurewebsites.net/api/healthcheck/poi
+      production_url_healthcheck: https://openhackf603h606poi.azurewebsites.net/api/healthcheck/poi
     secrets:
       AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
 
@@ -103,7 +103,7 @@ jobs:
       slot_name: staging
       webapp_name: openhackf603h606poi
       webapp_resource_group: openhackf603h606rg
-      production_url_healthcheck: https://openhackf603h60poi.azurewebsites.net/api/healthcheck/poi
+      production_url_healthcheck: https://openhackf603h606poi.azurewebsites.net/api/healthcheck/poi
     secrets:
       AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
       
