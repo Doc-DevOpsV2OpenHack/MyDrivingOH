@@ -1,0 +1,55 @@
+name: Allow some traffic into a desired slot
+
+on:
+  workflow_call:
+    inputs:
+      slot_name:
+        required: true
+        type: string
+        description: The name of the slot to deploy to - e.g. staging
+      webapp_name:
+        required: true
+        type: string
+        description: The name of the Azure Web App to deploy to
+      webapp_resource_group:
+        required: true
+        type: string
+        description: The name of the Azure Web App resource group
+      percentage:
+        required: true
+        type: int
+        description: The percentage of traffic to allow into staging (0-100)
+      production_url_healthcheck:
+        required: true
+        type: string
+        description: The production URL to validate
+    secrets:
+      AZURE_CREDENTIALS:
+        required: true
+
+jobs:
+  canary_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Azure authentication
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS  }}
+
+      - name: Set staging percentage
+        run: |
+          az webapp traffic-routing set \
+            --distribution ${{ inputs.slot_name}}=${{ inputs.percentage }} \
+            --name ${{ inputs.webpp_name }} \
+            --resource-group ${{ inputs.webapp_resource_group }}
+          echo "Set traffic routing for ${{ inputs.slot_name }} to ${{ inputs.percentage }}%"
+
+      - uses: actions/checkout@v2 # needed to get the script
+
+      - name: Run Validation script
+        run: |
+          chmod +x ./.github/build/healthcheck.sh
+          ./.github/build/healthcheck.sh -i ${{ inputs.production_url_healthcheck }}
+          ./.github/build/healthcheck.sh -i ${{ inputs.production_url_healthcheck }}
+          ./.github/build/healthcheck.sh -i ${{ inputs.production_url_healthcheck }}
+        description: run enough times to get both the staging and production
