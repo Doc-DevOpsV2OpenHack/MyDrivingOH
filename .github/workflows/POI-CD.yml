@@ -6,6 +6,7 @@ on:
       - apis/poi/**
       - .github/workflows/POI-CD.yml
 
+
 env:
   registry: openhackf603h60acr.azurecr.io
   repository: devopsoh/api-poi
