@@ -47,4 +47,3 @@ jobs:
           ./.github/build/healthcheck.sh -i ${{ inputs.production_url_healthcheck }}
           ./.github/build/healthcheck.sh -i ${{ inputs.production_url_healthcheck }}
           ./.github/build/healthcheck.sh -i ${{ inputs.production_url_healthcheck }}
-        description: run enough times to get both the staging and production
