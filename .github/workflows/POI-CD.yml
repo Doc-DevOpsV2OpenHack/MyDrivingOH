@@ -8,13 +8,13 @@ on:
 
 
 env:
-  registry: openhackf603h60acr.azurecr.io
+  registry: openhackf603h606acr.azurecr.io
   repository: devopsoh/api-poi
   docker_path: apis/poi/web
-  webapp_name: openhackdct2jkx0poi
+  webapp_name: openhackf603h606poi
   resource_group: openhackf603h606rg
-  staging_url_healthcheck: https://openhackf603h60poi-staging.azurewebsites.net/api/healthcheck/poi
-  production_url_healthcheck: https://openhackf603h60poi.azurewebsites.net/api/healthcheck/poi
+  staging_url_healthcheck: https://openhackf603h606poi-staging.azurewebsites.net/api/healthcheck/poi
+  production_url_healthcheck: https://openhackf603h606poi.azurewebsites.net/api/healthcheck/poi
 
 jobs:
   docker_build_and_push:
@@ -89,8 +89,8 @@ jobs:
     with:
       percentage: 20
       slot_name: staging
-      webapp_name: openhackdct2jkx0poi
-      webapp_resource_group: openhackdct2jkx0rg
+      webapp_name: openhackf603h606poi
+      webapp_resource_group: openhackf603h606rg
       production_url_healthcheck: https://openhackf603h60poi.azurewebsites.net/api/healthcheck/poi
     secrets:
       AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
@@ -101,8 +101,8 @@ jobs:
     with:
       percentage: 50
       slot_name: staging
-      webapp_name: openhackdct2jkx0poi
-      webapp_resource_group: openhackdct2jkx0rg
+      webapp_name: openhackf603h606poi
+      webapp_resource_group: openhackf603h606rg
       production_url_healthcheck: https://openhackf603h60poi.azurewebsites.net/api/healthcheck/poi
     secrets:
       AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
