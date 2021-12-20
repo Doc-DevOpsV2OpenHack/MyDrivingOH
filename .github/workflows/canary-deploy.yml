@@ -40,7 +40,7 @@ jobs:
         run: |
           az webapp traffic-routing set \
             --distribution ${{ inputs.slot_name}}=${{ inputs.percentage }} \
-            --name ${{ inputs.webpp_name }} \
+            --name ${{ inputs.webapp_name }} \
             --resource-group ${{ inputs.webapp_resource_group }}
           echo "Set traffic routing for ${{ inputs.slot_name }} to ${{ inputs.percentage }}%"
 
