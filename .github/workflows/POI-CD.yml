@@ -1,7 +1,7 @@
 name: POI-CD
 on:
   push:
-    branches: [main, ch5]
+    branches: [main, ch8]
     paths:
       - apis/poi/**
       - .github/workflows/POI-CD.yml
@@ -82,9 +82,34 @@ jobs:
           chmod +x ./.github/build/healthcheck.sh
           ./.github/build/healthcheck.sh -i ${{ env.staging_url_healthcheck }}
 
+  canary-deploy-1:
+    needs: validate_staging
+    uses: Doc-DevOpsV2OpenHack/MyDrivingOH/.github/workflows/canary-deploy.yml@ch8
+    with:
+      slot_name: staging
+      webapp_name: ${{ env.webapp_name }}
+      webapp_resource_group: ${{ env.resource_group }}
+      percentage: 20
+      production_url_healthcheck: ${{ env.production_url_healthcheck }}
+    secrets:
+      AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
+
+  canary-deploy-2:
+    needs: canary-deploy-1
+    uses: Doc-DevOpsV2OpenHack/MyDrivingOH/.github/workflows/canary-deploy.yml@ch8
+    with:
+      slot_name: staging
+      webapp_name: ${{ env.webapp_name }}
+      webapp_resource_group: ${{ env.resource_group }}
+      percentage: 20
+      production_url_healthcheck: ${{ env.production_url_healthcheck }}
+    secrets:
+      AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
+      
   production_deploy:
     runs-on: ubuntu-latest
-    needs: validate_staging
+    needs: canary-deploy-2
+    environment: production
     steps:
       - name: Azure authentication
         uses: azure/login@v1
